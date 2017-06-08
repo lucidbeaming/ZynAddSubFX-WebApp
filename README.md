@@ -14,7 +14,7 @@ logout and log back in to use NVM
 nvm install v6.10.1
 ```
 
-# Installation
+## Installation
 
 clone the repo in the user directory
 ```
@@ -22,7 +22,7 @@ cd ZynAddSubFX-WebApp
 npm install
 ```
 
-# Use
+## Use
 
 It's useful to include this app in the launch script for ZynAddSubFX...
 
