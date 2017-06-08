@@ -27,7 +27,9 @@ npm install
 It's useful to include this app in the launch script for ZynAddSubFX...
 
 Launch ZynAddSubFX
-On another device/browser on the same network, go to `http://<IP address of the Raspberry Pi>:7000`
+
+On another device/browser on the same network, go to 
+`http://<IP address of the Raspberry Pi>:7000`
 
 
 
