@@ -1,0 +1,127 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>[ Zyn ]</title>
+  <meta name="description" content="zyn tweaker">
+  <meta name="author" content="lucidbeaming">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/jqm.css">
+  <script src="/js/jq.js"></script>
+  <script src="/js/jqm.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+
+<div data-role="page" data-theme="b">
+
+	<div data-role="header" data-position="fixed">
+		<h1>[ zyn ]</h1>
+		<a href="#" id="panic" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-delete">silence</a>
+	</div>
+
+	<ul id="instruments" data-role="listview" data-inset="true">
+		<li data-icon="audio"><a href="#" data-path="Choir and Voice/0034-Slow Morph_Choir.xiz" >slow morph</a></li>
+		<li data-icon="audio"><a href="#" data-path="Choir and Voice/0066-Vocal Morph 2.xiz" >morpho</a></li>
+		<li data-icon="audio"><a href="#" data-path="Choir and Voice/0069-Vocal Morph 5.xiz" >morpha</a></li>
+		<li data-icon="audio"><a href="#" data-path="Collection/0015-Steel Wire.xiz" >wire</a></li>
+		<li data-icon="audio"><a href="#" data-path="Collection/0032-Slow Saw.xiz" >slosaw</a></li>
+		<li data-icon="audio"><a href="#" data-path="Collection/0064-Slow Deep Matrix.xiz" >deetrix</a></li>
+		<li data-icon="audio"><a href="#" data-path="Collection/0088-Aooww.xiz" >aoooww</a></li>
+		<li data-icon="audio"><a href="#" data-path="Collection/0096-Power Guitar 1.xiz" >powgix</a></li>
+		<li data-icon="audio"><a href="#" data-path="Collection/0115-Space Voice.xiz" >spacvoce</a></li>
+		<li data-icon="audio"><a href="#" data-path="Companion/0004-Muffled Bells.xiz" >muffbelle</a></li>
+		<li data-icon="audio"><a href="#" data-path="Companion/0019-Warm Square Swell.xiz" >squaswell</a></li>
+		<li data-icon="audio"><a href="#" data-path="Companion/0054-Sub Phase Bass.xiz" >subphase</a></li>
+		<li data-icon="audio"><a href="#" data-path="Companion/0118-Ooo.xiz" >ooo</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0006-Ronzio_01.xiz" >ronzio1</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0006-Ronzio_02.xiz" >ronzio2</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0006-Ronzio_03.xiz" >ronzio3</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0017-Strano_01.xiz" >strano</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0045-Fischia_01.xiz" >fischia</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0049-Resonance Pad2.xiz" >respad</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Noise/0061-Campane.xiz" >campane</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0011-abracadabra.xiz" >abracadrabra</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0016-SpaceAtmo.xiz" >spacatmo</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0017-friendly sines.xiz" >frendsine</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0029-Delicato_03.xiz" >delicato</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0045-Spazio_profondo1.xiz" >spacprofondo</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0051-DolcePiano_03.xiz" >dolcaepiano</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0072-Zufolo_1.xiz" >zufulo</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0076-Pinkollo.xiz" >pinkollo</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0082-Organetto_02.xiz" >organetto</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0099-a.xiz" >a</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0108-Arcano.xiz" >arcano</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0124-Armonica.xiz" >armonica</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0130-abbellimento.xiz" >abbellimento</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0133-fluido.xiz" >fluido</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0142-Solitudine.xiz" >solitudine</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0147-Attesa.xiz" >atessa</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0152-Memory2.xiz" >memory</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0155-contorno.xiz" >contorno</a></li>
+		<li data-icon="audio"><a href="#" data-path="Cormi_Sound/0158-patetico.xiz" >patetico</a></li>
+		<li data-icon="audio"><a href="#" data-path="Drums/0001-Drums Kit1.xiz" >drum kit</a></li>
+		<li data-icon="audio"><a href="#" data-path="Fantasy/0011-Space Choir1.xiz" >spachoir</a></li>
+		<li data-icon="audio"><a href="#" data-path="Fantasy/0036-ImpossibleDream4.xiz" >imp dream</a></li>
+		<li data-icon="audio"><a href="#" data-path="Guitar/0003-Dist Guitar 3.xiz" >disgix</a></li>
+		<li data-icon="audio"><a href="#" data-path="Guitar/0033-Trash Guitar 1.xiz" >tragix</a></li>
+		<li data-icon="audio"><a href="#" data-path="Guitar/0034-Trash Guitar 2.xiz" >trogix</a></li>
+		<li data-icon="audio"><a href="#" data-path="Laba170bank/0133-chip-HarshSaw.xiz" >harshaw</a></li>
+		<li data-icon="audio"><a href="#" data-path="Laba170bank/0138-chip-PolyDistorted2.xiz" >podist</a></li>
+		<li data-icon="audio"><a href="#" data-path="Misc/0005-Bells 4.xiz" >bells</a></li>
+		<li data-icon="audio"><a href="#" data-path="Misc/0068-SuperSaw 4.xiz" >supersaw</a></li>
+		<li data-icon="audio"><a href="#" data-path="Noises/0002-Ioioioioioi.xiz" >ioioioioi</a></li>
+		<li data-icon="audio"><a href="#" data-path="Noises/0035-Metal Sound 3.xiz" >metasouthree</a></li>
+		<li data-icon="audio"><a href="#" data-path="Noises/0037-Metal Sound 4.xiz" >metasoufour</a></li>
+		<li data-icon="audio"><a href="#" data-path="Noises/0038-Metal Sound 5.xiz" >metasoufive</a></li>
+		<li data-icon="audio"><a href="#" data-path="Noises/0065-Short noise.xiz" >shonose</a></li>
+		<li data-icon="audio"><a href="#" data-path="Strings/0016-Sweep Pad 1.xiz" >sweepad</a></li>
+		<li data-icon="audio"><a href="#" data-path="Strings/0017-Sweep Pad 1 Fat.xiz" >sweepad fat</a></li>
+		<li data-icon="audio"><a href="#" data-path="Synth/0006-Pulse Pad 3.xiz" >pulspad</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0005-Order of Chaos.xiz" >order of chaos</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0011-Ping.xiz" >ping</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0020-Angry Saw.xiz" >angresaw</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0026-White Music 1.xiz" >white music</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0035-Vangelis Saw - C.xiz" >vangesawSee</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0036-Vangelis Saw - D.xiz" >vangesawDee</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0044-RichSpace00.xiz" >richspac</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0056-Ethereal Sub.xiz" >ether sub</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0059-SUBsaw.xiz" >subsaw</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0070-Sub Lush Sweep.xiz" >sublush</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0091-Noisy Tone-Percussion.xiz" >noisatone</a></li>
+		<li data-icon="audio"><a href="#" data-path="net-wisdom/0105-Filter Trem clean.xiz" >filtatreem</a></li>
+		<li data-icon="audio"><a href="#" data-path="olivers-other/0036-Tick.xiz" >tic</a></li>
+		<li data-icon="audio"><a href="#" data-path="olivers-other/0038-Deep Zyn.xiz" >deep zyn</a></li>
+		<li data-icon="audio"><a href="#" data-path="olivers-other/0042-Crunchy Bass.xiz" >cunka bass</a></li>
+		<li data-icon="audio"><a href="#" data-path="olivers-other/0047-FM Growly Bass.xiz" >FM</a></li>
+		<li data-icon="audio"><a href="#" data-path="the_mysterious_bank_2/0033-new_glitch.xiz" >new glitch city</a></li>
+		<li data-icon="audio"><a href="#" data-path="the_mysterious_bank_2/0034-radio.xiz" >radio</a></li>
+		<li data-icon="audio"><a href="#" data-path="the_mysterious_bank_3/0038-falling_stars.xiz" >falling stars</a></li>
+	</ul>
+</div>
+<script>
+	var socket = io.connect('http://zyn.local:7000');
+	$(document).on('vclick', '#instruments li a', function(){  
+		var ipath = $(this).attr('data-path');
+		var iname = $(this).text();
+		console.log(iname + ': ' + ipath);
+		socket.emit('msg', ipath);
+		$('#instruments li a').removeClass('ui-btn-active');
+		$(this).addClass('ui-btn-active');
+	});
+	$(document).on('vclick', '#panic', function(){  
+		var ipath = $(this).attr('data-path');
+		var iname = $(this).text();
+		console.log('silence');
+		socket.emit('msg', 'silence');
+	});
+	socket.on('connect', function(data) {
+		socket.emit('msg', 'client connected');
+	});
+</script>
+
+</body>
+</html>

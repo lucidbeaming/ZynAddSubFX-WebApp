@@ -1,0 +1,20 @@
+{
+  "name": "zynweb",
+  "version": "0.9.0",
+  "description": "web app for zynaddsubfx",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "zynaddsubfx"
+  ],
+  "author": "lucidbeaming",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "osc": "^2.2.0",
+    "socket.io": "^1.7.3"
+  }
+}
