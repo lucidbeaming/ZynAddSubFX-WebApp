@@ -1,7 +1,7 @@
 {
   "name": "zynweb",
-  "version": "0.9.0",
-  "description": "web app for zynaddsubfx",
+  "version": "0.9.1",
+  "description": "Web app for zynaddsubfx",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
