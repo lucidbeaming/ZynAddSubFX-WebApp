@@ -6,7 +6,6 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 var osc = require("osc");
 
-app.use(express.static(__dirname + '/node_modules'));  
 app.use(express.static(__dirname + '/assets'));
 
 app.get('/', function(req, res,next) {  
