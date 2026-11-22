@@ -5,6 +5,10 @@ var server = require('http').createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 var osc = require("osc");
+var path = require('path');
+
+// ZynAddSubFX instrument banks (where a source build installs them)
+var BANKS = '/usr/local/share/zynaddsubfx/banks';
 
 app.use(express.static(__dirname + '/assets'));
 
@@ -36,8 +40,21 @@ udpPort.on('error', function (err) {
 
 udpPort.open();
 
-function changeinst(path) {
-    var fullpath="/usr/local/share/zynaddsubfx/banks/" + path;
+// Turn a bank-relative path from the browser ("Pads/0001-Sine Pad.xiz") into a
+// full path, or null if it isn't a .xiz file inside BANKS. Rejects absolute
+// paths, ".." escapes and control characters.
+function bankFile(rel) {
+    if (typeof rel !== 'string' || /[\x00-\x1f]/.test(rel) || path.isAbsolute(rel)) {
+        return null;
+    }
+    var full = path.resolve(BANKS, rel);
+    if (!full.startsWith(BANKS + path.sep) || path.extname(full) !== '.xiz') {
+        return null;
+    }
+    return full;
+}
+
+function changeinst(fullpath) {
     var msg = {
         address: '/load_xiz',
         args: [
@@ -57,8 +74,7 @@ function changeinst(path) {
 }
 
 function appinit() {
-    var path = "Pads/0001-Sine Pad.xiz"
-    var fullpath="/usr/local/share/zynaddsubfx/banks/" + path;
+    var fullpath = bankFile("Pads/0001-Sine Pad.xiz");
     var msg = {
         address: '/load_xiz',
         args: [
@@ -76,8 +92,7 @@ function appinit() {
     console.log("osc: ", msg.address, msg.args);
     udpPort.send(msg);
 
-    var path = "Drums/0001-Drums Kit1.xiz"
-    var fullpath="/usr/local/share/zynaddsubfx/banks/" + path;
+    var fullpath = bankFile("Drums/0001-Drums Kit1.xiz");
     var msg = {
         address: '/load_xiz',
         args: [
@@ -113,9 +128,14 @@ io.on('connection', function(client) {
         if (data == 'silence') {
 		panic();
 		console.log('PANIC');
-	} else if (data.slice(-3) == 'xiz') {
-		changeinst(data);
-		console.log('INST');
+	} else if (typeof data === 'string' && data.slice(-3) == 'xiz') {
+		var file = bankFile(data);
+		if (file) {
+			changeinst(file);
+			console.log('INST');
+		} else {
+			console.error('rejected instrument path: ' + JSON.stringify(data));
+		}
 	} else {
 		console.log(data);
 	}
