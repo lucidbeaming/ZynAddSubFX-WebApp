@@ -24,6 +24,12 @@ var udpPort = new osc.UDPPort({
     metadata: true
 });
 
+// Without a listener, a UDP error (e.g. the port already in use) would crash
+// the server instead of being logged.
+udpPort.on('error', function (err) {
+    console.error('OSC: ' + err.message);
+});
+
 udpPort.open();
 
 function changeinst(path) {
