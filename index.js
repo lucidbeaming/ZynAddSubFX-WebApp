@@ -13,7 +13,12 @@ app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(7000);
+// HTTP port for the web app. macOS uses 7000 for AirPlay Receiver, so set
+// PORT (e.g. 7001) when running on a Mac.
+var PORT = Number(process.env.PORT) || 7000;
+server.listen(PORT, function () {
+    console.log('ZynAddSubFX web app on port ' + PORT);
+});
 
 var udpPort = new osc.UDPPort({
     localAddress: "127.0.0.1",
