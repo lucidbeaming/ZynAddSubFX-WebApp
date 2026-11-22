@@ -103,7 +103,8 @@
 	</ul>
 </div>
 <script>
-	var socket = io.connect('http://zyn.local:7000');
+	// Connect back to whichever host served the page (any hostname or IP, HTTPS too)
+	var socket = io();
 	$(document).on('vclick', '#instruments li a', function(){  
 		var ipath = $(this).attr('data-path');
 		var iname = $(this).text();
