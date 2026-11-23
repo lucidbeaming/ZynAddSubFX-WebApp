@@ -35,7 +35,6 @@ Then open `http://<address of the Pi>:7000` on a phone (or any browser) on the s
 
 - **Tap an instrument** to load it into part 1, which plays on MIDI channel 1.
 - **silence** sends ZynAddSubFX's panic command, stopping every sounding note.
-- Each time a browser connects, the app also loads *Sine Pad* into part 2 and *Drums Kit1* into part 10. ZynAddSubFX's parts listen on the MIDI channel with the same number, so those sounds play from channels 2 and 10 once the parts are enabled.
 
 ### Changing the instrument list
 
