@@ -5,6 +5,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Changed
+- README rewritten for Node 20+: install with `npm ci`, configuration (`PORT`, the banks path for source or Debian installs), usage, editing the instrument list, starting at boot with systemd, and how it works (#10)
 - socket.io 2.x → 4.x. The page connects with `io()` to whichever host served it, instead of the hard-coded `http://zyn.local:7000` (#3)
 - express 4 → 5 and osc 2.2 → 2.4; `engines.node` is `>=20` (#3)
 - `package-lock.json` is committed, and `node_modules` is git-ignored (#3)
