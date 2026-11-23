@@ -10,6 +10,8 @@ All notable changes to this project are documented here. The format follows [Kee
 - `package-lock.json` is committed, and `node_modules` is git-ignored (#3)
 
 ### Added
+- MIT license (#6)
+- Package metadata: `repository`, `bugs` and `homepage` in `package.json` (#6)
 - `npm start` (#3)
 - `PORT` setting for the web app (default 7000; macOS uses 7000 for AirPlay Receiver) (#3)
 

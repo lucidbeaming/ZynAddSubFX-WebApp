@@ -34,5 +34,6 @@ node index.js
 On another device/browser on the same network, go to 
 `http://<IP address of the Raspberry Pi>:7000`
 
+## License
 
-
+[MIT](LICENSE).
