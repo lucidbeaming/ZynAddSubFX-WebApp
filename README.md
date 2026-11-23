@@ -1,38 +1,88 @@
 # ZynAddSubFX-WebApp
-Node.js web app to change instruments in ZynAddSubFX on a Raspberry Pi.
 
-This app displays a list of predefined instruments in ZynAddSubFX, displayed as a mobile optimized web page using jQuery Mobile, express, and socket.io. The commands to change the instruments are sent as OSC messages.
+Mobile web UI for switching ZynAddSubFX instruments on a Raspberry Pi via OSC.
 
-It is intended to run on a Raspberry Pi 3 with Raspbian Jessie Lite (Debian 8).
+**Build write-up:** [Setting up a Raspberry Pi 3 to run ZynAddSubFX in a headless configuration](https://lucidbeaming.com/blog/setting-up-a-raspberry-pi-3-to-run-zynaddsubfx-in-a-headless-configuration/)
 
-Node.js 6.10.1 is required:
-```
-curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh
-```
-logout and log back in to use NVM
-```
-nvm install v6.10.1
-```
+A headless [ZynAddSubFX](https://zynaddsubfx.sourceforge.io/) synth has no screen, so there's no way to pick a sound while playing. This small Node.js app runs on the same Raspberry Pi and serves a phone-sized list of instruments. Tap one and the synth switches to it. It's part of a battery-powered synth box played from a USB MIDI keyboard; the setup scripts are in [pi-synths](https://github.com/lucidbeaming/pi-synths).
 
-## Installation
+## Requirements
 
-clone the repo in the user directory
-```
+- Node.js 20 or newer
+- ZynAddSubFX running **on the same machine** with OSC enabled on port 7777 (`zynaddsubfx -P 7777 …`). The [`zynlaunch.sh`](https://github.com/lucidbeaming/pi-synths/blob/master/ZynAddSubFX/zynlaunch.sh) script in pi-synths starts it that way.
+- ZynAddSubFX's instrument banks in `/usr/local/share/zynaddsubfx/banks`, where a source build installs them (see [Configuration](#configuration) for the Debian package)
+
+## Install
+
+```bash
+git clone https://github.com/lucidbeaming/ZynAddSubFX-WebApp.git
 cd ZynAddSubFX-WebApp
-npm install
+npm ci
+npm start
 ```
 
-## Use
+Then open `http://<address of the Pi>:7000` on a phone (or any browser) on the same network.
 
-It's useful to include this app in the launch script for ZynAddSubFX...
+## Configuration
 
-Launch ZynAddSubFX
+| Setting | Where | Default | Notes |
+|---|---|---|---|
+| Web port | `PORT` environment variable | `7000` | macOS uses 7000 for AirPlay Receiver, so use another port there, e.g. `PORT=7001 npm start` |
+| Instrument banks | `BANKS` in [`index.js`](index.js) | `/usr/local/share/zynaddsubfx/banks` | With Debian's `zynaddsubfx` package, change it to `/usr/share/zynaddsubfx/banks` |
+| OSC | `index.js` | sends from `127.0.0.1:6666` to `127.0.0.1:7777` | Must match ZynAddSubFX's `-P` port |
+
+## Usage
+
+- **Tap an instrument** to load it into part 1, which plays on MIDI channel 1.
+- **silence** sends ZynAddSubFX's panic command, stopping every sounding note.
+
+### Changing the instrument list
+
+The list is in [`index.html`](index.html). Each entry is a button whose `data-path` is the instrument file relative to the banks folder:
+
+```html
+<li><button type="button" aria-pressed="false" data-path="Collection/0032-Slow Saw.xiz">slosaw</button></li>
 ```
-cd ZynAddSubFX-WebApp
-node index.js
+
+Copy a line, change `data-path` to any `.xiz` file under the banks folder and the label to whatever you want shown. Paths outside the banks folder are rejected by the server.
+
+### Starting at boot
+
+The [blog post](https://lucidbeaming.com/blog/setting-up-a-raspberry-pi-3-to-run-zynaddsubfx-in-a-headless-configuration/) starts the app from the `pi` user's `~/.profile`. On a current Raspberry Pi OS, a systemd service is the cleaner way:
+
+```ini
+# /etc/systemd/system/zynweb.service
+[Unit]
+Description=ZynAddSubFX web app
+After=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/ZynAddSubFX-WebApp
+ExecStart=/usr/bin/npm start
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 ```
-On another device/browser on the same network, go to 
-`http://<IP address of the Raspberry Pi>:7000`
+
+```bash
+sudo systemctl enable --now zynweb
+```
+
+Adjust `User`, the paths and the `npm` location (`which npm`) to your install.
+
+## How it works
+
+1. [`index.js`](index.js) serves `index.html` and its assets with Express, and listens for socket.io messages.
+2. The page sends the tapped instrument's path, or `silence`.
+3. The server checks the path stays inside the banks folder and ends in `.xiz`. Then it sends ZynAddSubFX the OSC message `/load_xiz <part> <full path>` (or `/Panic`) over UDP with the [osc](https://www.npmjs.com/package/osc) package.
+
+## Related projects
+
+- [pi-synths](https://github.com/lucidbeaming/pi-synths): the scripts that set up and launch ZynAddSubFX on the Pi
+- [Fluidsynth-Webapp](https://github.com/lucidbeaming/Fluidsynth-Webapp): the same idea for FluidSynth and SoundFonts
+- [Camel](https://github.com/lucidbeaming/Camel): an Arduino drone synth
 
 ## License
 

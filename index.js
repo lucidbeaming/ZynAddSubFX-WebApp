@@ -73,44 +73,6 @@ function changeinst(fullpath) {
     udpPort.send(msg);
 }
 
-function appinit() {
-    var fullpath = bankFile("Pads/0001-Sine Pad.xiz");
-    var msg = {
-        address: '/load_xiz',
-        args: [
-            {
-                type: 'i',
-                value: 1
-            },
-            {
-                type: 's',
-                value: fullpath
-            }
-        ]
-    };
-
-    console.log("osc: ", msg.address, msg.args);
-    udpPort.send(msg);
-
-    var fullpath = bankFile("Drums/0001-Drums Kit1.xiz");
-    var msg = {
-        address: '/load_xiz',
-        args: [
-            {
-                type: 'i',
-                value: 9
-            },
-            {
-                type: 's',
-                value: fullpath
-            }
-        ]
-    };
-
-    console.log("osc: ", msg.address, msg.args);
-    udpPort.send(msg);
-}
-
 function panic() {
     var msg = {
         address: '/Panic',
@@ -123,7 +85,6 @@ function panic() {
 
 io.on('connection', function(client) {
     console.log('server connected');
-    appinit();
     client.on('msg', function(data) {
         if (data == 'silence') {
 		panic();
