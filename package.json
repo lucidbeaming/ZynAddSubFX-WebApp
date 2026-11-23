@@ -15,7 +15,7 @@
     "zynaddsubfx"
   ],
   "author": "lucidbeaming",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "express": "^5.3.0",
     "osc": "^2.4.5",
@@ -25,5 +25,13 @@
     "osc": {
       "ws": "^8.21.0"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucidbeaming/ZynAddSubFX-WebApp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lucidbeaming/ZynAddSubFX-WebApp/issues"
+  },
+  "homepage": "https://lucidbeaming.com/blog/setting-up-a-raspberry-pi-3-to-run-zynaddsubfx-in-a-headless-configuration/"
 }
