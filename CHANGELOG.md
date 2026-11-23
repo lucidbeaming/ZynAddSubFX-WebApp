@@ -17,6 +17,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - `PORT` setting for the web app (default 7000; macOS uses 7000 for AirPlay Receiver) (#3)
 
 ### Fixed
+- Instrument changes failed with the packaged ZynAddSubFX: the banks folder is now `/usr/share` or `/usr/local/share`, whichever exists, or `BANKS` (#15)
 - Tapping an instrument or **silence** did nothing: jQuery 3.5 broke jQuery Mobile 1.4.5. The page is rewritten in plain JS with the same instruments (#8)
 - Instrument paths from the browser are checked to stay inside the bank folder. Previously `../` or absolute paths could point ZynAddSubFX at any `.xiz` file (#4)
 - A non-string message, or a UDP error, no longer crashes the server (#3, #4)

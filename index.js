@@ -7,8 +7,15 @@ const io = new Server(server);
 var osc = require("osc");
 var path = require('path');
 
-// ZynAddSubFX instrument banks (where a source build installs them)
-var BANKS = '/usr/local/share/zynaddsubfx/banks';
+var fs = require('fs');
+
+// ZynAddSubFX instrument banks: BANKS if set, otherwise /usr/share (the Debian
+// package) or /usr/local/share (a source build), whichever exists.
+var BANKS = path.resolve(process.env.BANKS ||
+    ['/usr/share/zynaddsubfx/banks', '/usr/local/share/zynaddsubfx/banks'].find(function (dir) {
+        return fs.existsSync(dir);
+    }) || '/usr/share/zynaddsubfx/banks');
+console.log('Instrument banks: ' + BANKS);
 
 app.use(express.static(__dirname + '/assets'));
 

@@ -8,9 +8,9 @@ A headless [ZynAddSubFX](https://zynaddsubfx.sourceforge.io/) synth has no scree
 
 ## Requirements
 
-- Node.js 20 or newer
+- Node.js 20 or newer (on Raspberry Pi OS trixie, `sudo apt install nodejs npm` is new enough)
 - ZynAddSubFX running **on the same machine** with OSC enabled on port 7777 (`zynaddsubfx -P 7777 …`). The [`zynlaunch.sh`](https://github.com/lucidbeaming/pi-synths/blob/master/ZynAddSubFX/zynlaunch.sh) script in pi-synths starts it that way.
-- ZynAddSubFX's instrument banks in `/usr/local/share/zynaddsubfx/banks`, where a source build installs them (see [Configuration](#configuration) for the Debian package)
+- ZynAddSubFX's instrument banks, found automatically in `/usr/share/zynaddsubfx/banks` (the Raspberry Pi OS / Debian package) or `/usr/local/share/zynaddsubfx/banks` (a source build)
 
 ## Install
 
@@ -28,7 +28,7 @@ Then open `http://<address of the Pi>:7000` on a phone (or any browser) on the s
 | Setting | Where | Default | Notes |
 |---|---|---|---|
 | Web port | `PORT` environment variable | `7000` | macOS uses 7000 for AirPlay Receiver, so use another port there, e.g. `PORT=7001 npm start` |
-| Instrument banks | `BANKS` in [`index.js`](index.js) | `/usr/local/share/zynaddsubfx/banks` | With Debian's `zynaddsubfx` package, change it to `/usr/share/zynaddsubfx/banks` |
+| Instrument banks | `BANKS` environment variable | `/usr/share/zynaddsubfx/banks` or `/usr/local/share/zynaddsubfx/banks`, whichever exists | The folder in use is logged at startup |
 | OSC | `index.js` | sends from `127.0.0.1:6666` to `127.0.0.1:7777` | Must match ZynAddSubFX's `-P` port |
 
 ## Usage
