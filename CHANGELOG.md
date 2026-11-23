@@ -16,6 +16,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - `PORT` setting for the web app (default 7000; macOS uses 7000 for AirPlay Receiver) (#3)
 
 ### Fixed
+- Tapping an instrument or **silence** did nothing: jQuery 3.5 broke jQuery Mobile 1.4.5. The page is rewritten in plain JS with the same instruments (#8)
 - Instrument paths from the browser are checked to stay inside the bank folder. Previously `../` or absolute paths could point ZynAddSubFX at any `.xiz` file (#4)
 - A non-string message, or a UDP error, no longer crashes the server (#3, #4)
 
@@ -23,4 +24,5 @@ All notable changes to this project are documented here. The format follows [Kee
 - osc's pinned `ws` 8.18.0 is overridden to a patched 8.x (#3)
 
 ### Removed
+- jQuery, jQuery Mobile and its icon set (#8)
 - Serving `node_modules` over HTTP (#3)
