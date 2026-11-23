@@ -1,0 +1,98 @@
+/* Dark, phone-first list, in the spirit of the old jQuery Mobile "b" theme. */
+:root {
+	color-scheme: dark;
+	--bg: #1d1d1d;
+	--panel: #333;
+	--text: #fff;
+	--muted: #bbb;
+	--accent: #1f63a8;
+	--focus: #6cf;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font: 1rem/1.4 system-ui, sans-serif;
+}
+
+header {
+	position: sticky;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1em;
+	padding: 0.5em 1em;
+	background: #111;
+	border-bottom: 1px solid #000;
+}
+
+h1 {
+	margin: 0;
+	font-size: 1.125rem;
+}
+
+main {
+	max-width: 40em;
+	margin: 0 auto;
+	padding: 1em;
+}
+
+#status {
+	margin: 0 0 1em;
+	color: var(--muted);
+}
+
+#status:empty {
+	display: none;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-radius: 0.5em;
+	overflow: hidden;
+}
+
+li + li {
+	border-top: 1px solid #222;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+
+#instruments button {
+	display: block;
+	width: 100%;
+	min-height: 2.75em;
+	padding: 0.6em 1em;
+	text-align: left;
+	background: var(--panel);
+	border: 0;
+}
+
+#instruments button[aria-pressed="true"] {
+	background: var(--accent);
+	font-weight: 600;
+}
+
+#panic {
+	padding: 0.4em 0.9em;
+	background: #a33;
+	border: 0;
+	border-radius: 0.3em;
+}
+
+button:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: -3px;
+}
