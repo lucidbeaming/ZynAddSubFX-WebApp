@@ -1,6 +1,6 @@
 {
   "name": "zynweb",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "Web app for zynaddsubfx",
   "main": "index.js",
   "engines": {

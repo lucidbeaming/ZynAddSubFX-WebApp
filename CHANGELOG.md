@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-23
+
+The phone-friendly ZynAddSubFX instrument picker for a Raspberry Pi, working again. Tapping an instrument had done nothing since jQuery 3.5, and the packaged ZynAddSubFX's bank folder wasn't found. Now on socket.io 4 and Node 20+, written in plain JS, with instrument paths confined to the bank folder.
+
 ### Changed
 - README rewritten for Node 20+: install with `npm ci`, configuration (`PORT`, the banks path for source or Debian installs), usage, editing the instrument list, starting at boot with systemd, and how it works (#10)
 - socket.io 2.x → 4.x. The page connects with `io()` to whichever host served it, instead of the hard-coded `http://zyn.local:7000` (#3)
@@ -29,3 +33,6 @@ All notable changes to this project are documented here. The format follows [Kee
 - Loading *Sine Pad* into part 2 and *Drums Kit1* into part 10 on every browser connection; only part 1 is used (#12)
 - jQuery, jQuery Mobile and its icon set (#8)
 - Serving `node_modules` over HTTP (#3)
+
+[Unreleased]: https://github.com/lucidbeaming/ZynAddSubFX-WebApp/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/lucidbeaming/ZynAddSubFX-WebApp/releases/tag/v1.0.0
