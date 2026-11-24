@@ -2,6 +2,8 @@
 
 Mobile web UI for switching ZynAddSubFX instruments on a Raspberry Pi via OSC.
 
+Documentation: [lucidbeaming.com/art/code/zynaddsubfx-webapp](https://lucidbeaming.com/art/code/zynaddsubfx-webapp)
+
 **Build write-up:** [Setting up a Raspberry Pi 3 to run ZynAddSubFX in a headless configuration](https://lucidbeaming.com/blog/setting-up-a-raspberry-pi-3-to-run-zynaddsubfx-in-a-headless-configuration/)
 
 A headless [ZynAddSubFX](https://zynaddsubfx.sourceforge.io/) synth has no screen, so there's no way to pick a sound while playing. This small Node.js app runs on the same Raspberry Pi and serves a phone-sized list of instruments. Tap one and the synth switches to it. It's part of a battery-powered synth box played from a USB MIDI keyboard; the setup scripts are in [pi-synths](https://github.com/lucidbeaming/pi-synths).
